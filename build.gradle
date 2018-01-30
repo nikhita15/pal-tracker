@@ -1,0 +1,15 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "1.5.9.RELEASE"
+}
+
+repositories{
+    mavenCentral()
+}
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.thymeleaf:thymeleaf-spring4")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+}
