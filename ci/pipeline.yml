@@ -3,42 +3,70 @@ resources:
 - name: pal-tracker
   type: git
   source:
-    uri: {{github-repository}}
+    uri: https://github.com/nikhita15/pal-tracker.git
     branch: master
-    private_key: {{github-private-key}}
+    private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpAIBAAKCAQEAnKEpRSXwaPdlw4pm+cToTdjY0kVSJG+csahHLV45HduYS0Jw
+    Xh8+VQC2iP8NFo6iUiznZDyWg8YRujfHL6dLBP6dXFo2gV+sc4b/hhb+uidQsNyg
+    WMMAM66hgcUcFAqR06pGGzBsXPRyWsQhnmnZYOGJFudKincOcCLVg/nZIRubXFu8
+    c399snlTImabjr4cokPaBAY7bodBN9I+LXTv9jexoz5g6w3jpdL7Gtj9l96XL9Qz
+    pgDv7/PadlHPD8kWj2pV0WBnHVMMr3lGgyUF3ZHOAUkpY97bvrya+k6wBQZb9zwa
+    5uCHhgroZ2Uka9CgA3Oy0O5+zsLPfejxoNFVhwIDAQABAoIBAQCXfbzn95D2RUq0
+    /TkqHQw+txzHC2sueJFKt6LYO4js2wcKy6DZOEjWeFEUYfOrvJs89dd7+Knvm/Rr
+    cyWBbsI9e3KB73NGYF3wg0LD05veOsZtuYaRM1IPqrjlRdspeyueWNNj2ssEgR3V
+    slt914z7ikhI0b4j/JEHXnm7Iz2iKYkXtbXV9JYOuIr+EMKjyc1oYQP67yJs3Dd/
+    rWvUiB4Sz6oLajWQEPVdc8s2pkH27E4kmKkpcsNbv20xZDieSIFn3BvHexDgaB+/
+    LcYW74WiFJnvF6HVB+NgimP65JM5K6n7wpGz+HZR6T7oe9kvT/0fA+huDQyl+veX
+    dDD6qHtZAoGBAMlbpB6yL1U0hJ6AWQ7W3w1ddCZxZxwF+c3i8Ve5mXH9L7mMUhZ8
+    Q0CDyNm5oJWOitKiy3THAslG9MMiFY9ObjVF/S8oRdRyZr4stCP4vbFlGkXo3PoY
+    5NRuYqtUc2xYs52TPzOsjDzLnI5NlsEXKKn3SK7b1eXpGOUeswJMzxgLAoGBAMci
+    OyVWz7QqIncMeSU6k9WXdQ1AfIWXVYRwmbEvwukDqoGorIxeATK27dQiVg1ITzQs
+    JJXQOT7tMMNcjKB6zol8AC9NC/OR5j52ws2zgcLG1SPheVnk7rHCvnDQ4NuCKfLH
+    VlePx3AINKsNonTgzDXpRQfmOk4pQr67dIAaetn1AoGAMfE/6LkrUkffaOzOqgaT
+    dl4qk+pmt6WnyvAyCh8ntwUkVDJAngEeMR8+rvoCoXWkaxAjxIgj4cZuqQOIM24x
+    mZcNcCfeAg6J+ztdRtrIOfqopJRYUtPf1ey3HmWo50Os8TV3ZJq0gdPCtez6qlPT
+    Ky0BYxV1nTvOh+2wWq6wYvcCgYBqpFlaaMA48uucJ7DlEBbFpyPHYgaNoHrqv0Z/
+    jl1qXk08vLETRvCLUU3SckT1Pgk0noNFO8q8eVfI99JTyxC6rg6HRlKlMThFsWIn
+    uP8/6S2R1pkfXCu8RNeqISKaS33dh4UkxVoAFFToWhfrUcvq/y65yUDmRNB6xnbg
+    d83c1QKBgQCSqqWyRm4YNVzHDmfrjZoZNy3GFF9a5isWuDX8bpXTaMrq/ndCTYy1
+    1XE+jsLwYtCVatsff2mDvT6NlQ4/alz/4pJ6fH69158SYbFbarYMRVFXGI6oCir7
+    xzW4KoonXYjW7mhyjttDnnTQS02HvlgqeY5R1ZRkM3xloK7NIhfFSw==
+    -----END RSA PRIVATE KEY-----
+
 
 - name: pal-tracker-artifacts
   type: s3
   source:
-    bucket: {{aws-bucket}}
+    bucket: student-artifacts-princeton
     regexp: releases/pal-tracker-(.*).jar
-    access_key_id: {{aws-access-key-id}}
-    secret_access_key: {{aws-secret-access-key}}
+    access_key_id: AKIAIBG5Z4HGEBOAYZBA
+    secret_access_key: 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
 
 - name: version
   type: semver
   source:
-    bucket: {{aws-bucket}}
+    bucket: student-artifacts-princeton
     key: pal-tracker/version
-    access_key_id: {{aws-access-key-id}}
-    secret_access_key: {{aws-secret-access-key}}
+    access_key_id: AKIAIBG5Z4HGEBOAYZBA
+    secret_access_key: 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
 
 - name: review-deployment
   type: cf
   source:
-    api: {{cf-api-url}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-org}}
+    api: api.sys.pikes.pal.pivotal.io
+    username: nikhita.jalan@mastercard.com
+    password: d07d5e4b
+    organization: nikhita-jalan-pal
     space: review
 
 - name: production-deployment
   type: cf
   source:
-    api: {{cf-api-url}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-org}}
+    api: api.sys.pikes.pal.pivotal.io
+    username: nikhita.jalan@mastercard.com
+    password: d07d5e4b
+    organization: nikhita-jalan-pal
     space: production
 
 jobs:
