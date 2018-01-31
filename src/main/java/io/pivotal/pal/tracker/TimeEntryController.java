@@ -1,6 +1,5 @@
 package io.pivotal.pal.tracker;
 
-import com.sun.management.jmx.TraceNotification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +10,17 @@ import java.util.List;
  * Created by e052988 on 1/31/18.
  */
 @RestController
-@ResponseBody
+@RequestMapping("/time-entries")
 public class TimeEntryController {
+
     TimeEntryRepository timeEntryRepository;
 
     public TimeEntryController(TimeEntryRepository timeEntryRepository) {
-        timeEntryRepository = this.timeEntryRepository;
+        this.timeEntryRepository = timeEntryRepository;
     }
 
     @PostMapping
-    public ResponseEntity create(TimeEntry timeEntry) {
+    public ResponseEntity create(@RequestBody TimeEntry timeEntry) {
         TimeEntry createTimeEntry = timeEntryRepository.create(timeEntry);
         return new ResponseEntity<>(createTimeEntry, HttpStatus.CREATED);
     }
@@ -41,8 +41,8 @@ public class TimeEntryController {
         return new ResponseEntity<List<TimeEntry>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("{id}")
-    public ResponseEntity<TimeEntry> update(@PathVariable long id, TimeEntry timeEntry) {
+    @PutMapping("{id}")
+    public ResponseEntity<TimeEntry> update(@PathVariable long id, @RequestBody TimeEntry timeEntry) {
         TimeEntry timeEntryUdated = timeEntryRepository.update(id, timeEntry);
 
         if (timeEntryUdated!= null) {

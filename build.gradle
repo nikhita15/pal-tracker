@@ -9,10 +9,9 @@ repositories{
 
 
 dependencies {
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.thymeleaf:thymeleaf-spring4")
-    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
