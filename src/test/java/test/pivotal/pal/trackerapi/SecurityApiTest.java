@@ -39,7 +39,7 @@ public class SecurityApiTest {
     @Test
     public void unauthorizedTest() {
         ResponseEntity<String> response = this.unAuthorizedRestTemplate.getForEntity("/", String.class);
-
+        System.out.print("the response status is " + response.getStatusCode());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
