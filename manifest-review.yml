@@ -4,7 +4,7 @@ applications:
   path: build/libs/pal-tracker.jar
   host: nj-pal-tracker-review
 
-services:
+  services:
   - tracker-database
-env:
-  SECURITY_FORCE_HTTPS: true
+  env:
+    SECURITY_FORCE_HTTPS: true
